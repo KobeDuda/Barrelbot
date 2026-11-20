@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:entity_properties",
+  "entity": "this",
+  "predicate": {
+    "minecraft:vehicle": {
+      "minecraft:entity_type": "minecraft:item_display",
+      "minecraft:nbt": "{Tags:[\"whimc.editor_base\"]}"
+    }
+  }
+}

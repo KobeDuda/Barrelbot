@@ -1,0 +1,6 @@
+dist/
+__pycache__/
+*.py[cod]
+.idea/
+.paper-test/
+classroom/target/

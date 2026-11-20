@@ -1,0 +1,110 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version number without v (packages artifacts only)"
+        required: true
+        default: "16"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${GITHUB_REF_NAME#v}"
+          fi
+          if [[ ! "$VERSION" =~ ^[0-9]+$ ]]; then
+            echo "Invalid version: $VERSION"
+            exit 1
+          fi
+          echo "number=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Prepare Paper and compile classroom plugin
+        shell: bash
+        run: |
+          mkdir -p .paper-test/plugins
+          cd .paper-test
+          curl --fail -L -o paper.jar https://fill-data.papermc.io/v1/objects/c86baf83b1fb0eb0d572f39484c242210896c6adf9cc9342d5c16c4de70c9bdc/paper-26.3-256.jar
+          curl --fail -L -o plugins/worldguard-bukkit-7.0.17.jar https://cdn.modrinth.com/data/DKY9btbd/versions/pI4UHLJL/worldguard-bukkit-7.0.17.jar
+          curl --fail -L -o plugins/FastAsyncWorldEdit-Paper-2.16.0.jar https://cdn.modrinth.com/data/z4HZZnLr/versions/U2dcKa9T/FastAsyncWorldEdit-Paper-2.16.0.jar
+          sha256sum -c ../scripts/build-dependencies.sha256
+          java -Dpaperclip.patchonly=true -jar paper.jar
+          cd ..
+          python scripts/build_classroom.py .paper-test
+
+      - name: Package release zips
+        run: python scripts/package_release.py --version "${{ steps.version.outputs.number }}"
+
+      - name: Upload packaging artifacts
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: barrelbot-v${{ steps.version.outputs.number }}-packages
+          path: |
+            dist/*.zip
+            dist/BarrelbotClassroom-26.3.jar
+
+      - name: Load release notes
+        if: github.event_name == 'push'
+        id: notes
+        shell: bash
+        run: |
+          NOTES_FILE="release-notes/v${{ steps.version.outputs.number }}.md"
+          if [[ -f "$NOTES_FILE" ]]; then
+            NOTES="$(cat "$NOTES_FILE")"
+          else
+            NOTES="Barrelbot v${{ steps.version.outputs.number }} for Paper 26.3.
+
+          Install these three files:
+          - BarrelbotClassroom-26.3.jar into the server plugins folder
+          - \`barrelbot_data_pack_v${{ steps.version.outputs.number }}.zip\` into your world's \`datapacks\` folder
+          - \`barrelbot_resource_pack_v${{ steps.version.outputs.number }}.zip\` into your \`resourcepacks\` folder, then enable it in world settings"
+          fi
+          {
+            echo "body<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub release
+        if: github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Barrelbot v${{ steps.version.outputs.number }}
+          body: ${{ steps.notes.outputs.body }}
+          files: |
+            dist/barrelbot_data_pack_v${{ steps.version.outputs.number }}.zip
+            dist/barrelbot_resource_pack_v${{ steps.version.outputs.number }}.zip
+            dist/BarrelbotClassroom-26.3.jar
+          draft: false
+          prerelease: false
+          generate_release_notes: false

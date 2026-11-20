@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": {
+          "type": "minecraft:location_check",
+          "predicate": {
+            "block": {
+              "blocks": [
+                "minecraft:barrel"
+              ],
+              "components": {
+                "minecraft:lock": {
+                  "predicates": {
+                    "minecraft:custom_name": {
+                      "text": "_LOCKTYPE: RUNNING_"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "whimc:barrelbot/bot/bot_running_message"
+  }
+}

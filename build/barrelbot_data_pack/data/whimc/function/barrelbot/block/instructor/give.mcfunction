@@ -1,0 +1,1 @@
+give @s yellow_shulker_box[minecraft:custom_name={text:'Instructor',color:'#55FFFF',italic:false},minecraft:custom_data={whimc:{classroom_block:"instructor"}},minecraft:custom_model_data={floats:[130000.0f]}]

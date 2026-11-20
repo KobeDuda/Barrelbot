@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": {
+          "type": "minecraft:location_check",
+          "predicate": {
+            "block": {
+              "blocks": "#whimc:interactables"
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "whimc:barrelbot/data_collection/click_feature"
+  }
+}

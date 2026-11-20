@@ -303,6 +303,98 @@
     {
       "type": "single",
       "resource": "whimc:barrelbot/faces/instructor/top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "kmc.ui:prompt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "kmc.ui:prompt_full"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "kmc.ui:prompt_text"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/faces/instructor/neutral - Copy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/faces/instructor/neutral2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/instructions/fire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/instructions/infinite_loop"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/instructions/move_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/barrelbot/lock"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/barrelbot/swap_mode"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/get_linked_puzzle"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/instructions/end_code_block"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/instructions/fire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/instructions/infinite_loop"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/instructions/move_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/left_arrow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/puzzle/set_success_condition"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/puzzle/toggle_size_editor"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/puzzle/touch_blue"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/puzzle/touch_observer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/right_arrow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/ui/template"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "whimc:barrelbot/vfx/death_ray"
     }
   ]
 }

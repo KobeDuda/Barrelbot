@@ -1,0 +1,36 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:equipment": {
+              "offhand": {
+                "predicates": {
+                  "minecraft:custom_data": {
+                    "whimc_puzzle_wand": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "items": [
+          {
+            "predicates": {
+              "minecraft:custom_data": {
+                "whimc_puzzle_wand": true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "function": "whimc:barrelbot/editor/edit_wand/press_f"
+  }
+}

@@ -1,0 +1,13 @@
+name: BarrelbotClassroom
+version: '26.3.1'
+main: org.whimc.barrelbot.Classroom
+api-version: '26.3'
+softdepend: [WorldGuard]
+commands:
+  barrelbot:
+    aliases: [bb]
+    description: Inspect and manage a Barrelbot puzzle
+permissions:
+  barrelbot.instructor:
+    default: op
+    description: Manage lesson rows, builders and setup copies

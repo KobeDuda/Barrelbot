@@ -1,5 +1,11 @@
 # Barrelbot
 
+For Paper 26.3, use the [classroom setup and in-game controls](CLASSROOM.md). The material below describes the original pack and its lessons.
+
+_v15_ — Minecraft 1.21.11
+
+[Download the latest release](https://github.com/whimc/Barrelbot/releases/latest) for installable datapack and resource pack zips. See [RELEASE.md](RELEASE.md) for release mechanics.
+
 _v0_8_
 29 May 2024
 

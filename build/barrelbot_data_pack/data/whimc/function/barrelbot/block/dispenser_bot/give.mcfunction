@@ -1,0 +1,1 @@
+give @s dispenser[minecraft:custom_name={text:'Dispenser Bot',color:'#FFFF55',italic:false},minecraft:custom_data={whimc:{classroom_block:"dispenser_bot"}},minecraft:custom_model_data={floats:[130123.0f]}]
